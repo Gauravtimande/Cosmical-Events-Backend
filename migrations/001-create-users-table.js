@@ -9,12 +9,12 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("User", {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
       },
       email: {
         type: Sequelize.TEXT,
@@ -71,6 +71,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("User");
   }
 };

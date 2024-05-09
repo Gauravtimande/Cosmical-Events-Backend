@@ -65,7 +65,6 @@ export const registerVendor = async (req, res) => {
   try {
     const { email, password, phone} = req.body
     console.log("req.body",req.body)
-    const date_of_birth = new Date();
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return response.errorMessageResponse(
@@ -74,9 +73,6 @@ export const registerVendor = async (req, res) => {
         HTTP_MESSAGES.EN.EMAIL_ALREADY_EXISTS
       );
     }
-    // if (req?.file) {
-    //   //multer code goes here
-    // }
 
     // Create New User in SQL
     const newUser = await User.create(

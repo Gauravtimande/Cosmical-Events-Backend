@@ -53,19 +53,3 @@ export const mustBeUser = async (req, res, next) => {
   }
 };
 
-export const eitherAdminOrVendor = async (req, res, next) => {
-  const user_id = req.user._id;
-  const user = await User.findOne({
-    attributes: ["role"],
-    where: { id: user_id }
-  });
-  if (user.role === "ADMIN" || user.role === "VENDOR") {
-    return next(); // Add return statement here
-  } else {
-    return response.unAuthorizedErrorMsgResponse(
-      res,
-      403,
-      HTTP_MESSAGES.EN.NOT_AUTHORIZED
-    );
-  }
-};
