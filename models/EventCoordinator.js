@@ -1,12 +1,16 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
-const User = sequelize.define("User", {
+const EventCoordinator = sequelize.define("EventCoordinator", {
   id: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
+  },
+  fullname: {
+    type: DataTypes.TEXT,
+    allowNull: false
   },
   email: {
     type: DataTypes.TEXT,
@@ -22,7 +26,8 @@ const User = sequelize.define("User", {
   },
   role: {
     type: DataTypes.ENUM,
-    values: ["ADMIN", "VENDOR", "USER","EVENT-COORDINATOR"]
+    values: ["EVENT-COORDINATOR"],
+    defaultValue : "EVENT-COORDINATOR"
   },
   is_deleted: {
     type: DataTypes.BOOLEAN,
@@ -38,7 +43,7 @@ const User = sequelize.define("User", {
   },
   mobile_number: {
     type: DataTypes.STRING,
-    allowNull: false // or false if it's required
+    allowNull: false 
   },
   token: {
     type: DataTypes.TEXT
@@ -47,4 +52,4 @@ const User = sequelize.define("User", {
   timestamps: true
 });
 
-module.exports = User;
+module.exports = EventCoordinator;

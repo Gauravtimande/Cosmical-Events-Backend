@@ -1,7 +1,4 @@
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
-import { JWT_KEY } from "../const/credentials"
-import User from "../models/User";
+
 import response from "../const/response"
 import { HTTP_MESSAGES } from "../const/message"
 import Appointment from "../models/Appointment";

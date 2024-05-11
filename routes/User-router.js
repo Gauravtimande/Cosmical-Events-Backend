@@ -1,11 +1,7 @@
-
-import multer from "multer";
 import express from "express";
-import { validateUserLogin } from "../middlewares/user.middleware";
 import { storage } from "../config/multer.config";
-import { login, registerUser } from "../controllers/user.controller";
-
-
+import multer from "multer";
+const userControllers =  require( "../controllers/user.controller"); // Ensure these imports are correct
 
 // Multer Configuration
 const upload = multer({
@@ -14,10 +10,6 @@ const upload = multer({
 
 export const userRouter = express.Router();
 
-    userRouter.post("/register-user", registerUser)
-    userRouter.post("/login", [validateUserLogin], login)
-
-
-
-
-
+// Define routes with proper callback functions
+userRouter.post("/register-user",userControllers.registerUser);
+userRouter.post("/login",userControllers.login );

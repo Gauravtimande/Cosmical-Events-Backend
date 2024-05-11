@@ -13,18 +13,18 @@ const VendorServices = sequelize.define("VendorServices", {
     type: DataTypes.UUID, 
     allowNull: false,
     references: {
-      model: "User", 
+      model: "Users", 
       key: "id"
     }
   },
   serviceType: {
     type: DataTypes.ENUM(
-      'VENUES', 'WEDDING CATERERS', 'photographers', 'DECORATORS', 
-      'MAKEUP ARTISTS', 'Mehandi Artist', 'DJ AND MULTIMEDIA', 
-      'Choreographers', 'Wedding entertainment', 'BRIDAL WEAR', 
-      'GROOM WEAR', 'Jewellery', 'Wedding Pandit', 
-      'Wedding Transportation', 'party places', 'Tent House', 
-      'Hospitality', 'band', 'wedding cakes'
+      'VENUES', 'WEDDING CATERERS', 'PHOTOGRAPHERS', 'DECORATORS', 
+      'MAKEUP ARTISTS', 'MEHANDI ARTIST', 'DJ AND MULTIMEDIA', 
+      'CHOREOGRAPHERS', 'WEDDING ENTERTAINMENT', 'BRIDAL WEAR', 
+      'GROOM WEAR', 'JEWELLERY', 'WEDDING PANDIT', 
+      'WEDDING TRANSPORTATION', 'PARTY PLACES', 'TENT HOUSE', 
+      'HOSPITALITY', 'BAND', 'WEDDING CAKES'
     ),
     allowNull: false
   },
@@ -49,11 +49,11 @@ const VendorServices = sequelize.define("VendorServices", {
     allowNull: true
   },
   city: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: true
   },
   contactNo: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: true
   },
   email: {

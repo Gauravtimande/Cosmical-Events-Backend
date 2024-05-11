@@ -14,38 +14,26 @@ module.exports = {
         type: Sequelize.UUID, // Change back to INTEGER if your User ID is of type INTEGER
         allowNull: false,
         references: {
-          model: 'User', // Make sure this matches your actual model name
+          model: 'Users', // Make sure this matches your actual model name
           key: 'id'
         }
       },
-      vendorID: {
+      EventCoordinatorID: {
         type: Sequelize.UUID, 
         allowNull: false,
         references: {
-          model: 'User', 
+          model: 'EventCoordinator', 
           key: 'id'
         }
-      },
-      fullName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      mobileNo: {
-        type: Sequelize.STRING,
-        allowNull: false
       },
       notes: {
         type: Sequelize.TEXT,
         allowNull: true
       },
       status: {
-        type: Sequelize.ENUM('Book', 'Cancel'),
+        type: Sequelize.ENUM('BOOK', 'PENDING','CANCEL'),
         allowNull: false,
-        defaultValue: 'Book'
+        defaultValue: 'PENDING'
       },
       is_deleted: {
         type: DataTypes.BOOLEAN, // Use DataTypes here instead of Sequelize

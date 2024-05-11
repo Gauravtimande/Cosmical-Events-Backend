@@ -1,5 +1,5 @@
 'use strict';
-const { DataTypes } = require("sequelize"); // Import DataTypes from Sequelize
+const { DataTypes } = require("sequelize");
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -11,10 +11,10 @@ module.exports = {
                 defaultValue: Sequelize.UUIDV4,
             },
             userID: {
-                type: Sequelize.UUID, // Change back to INTEGER if your User ID is of type INTEGER
+                type: Sequelize.UUID,
                 allowNull: false,
                 references: {
-                    model: 'User', // Make sure this matches your actual model name
+                    model: 'Users',
                     key: 'id'
                 }
             },
@@ -22,7 +22,7 @@ module.exports = {
                 type: Sequelize.UUID,
                 allowNull: false,
                 references: {
-                    model: 'User',
+                    model: 'Users',
                     key: 'id'
                 }
             },

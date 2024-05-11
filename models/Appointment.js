@@ -13,36 +13,24 @@ const Appointment = sequelize.define("Appointment", {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: "User",
+            model: "Users",
             key: "id"
         }
     },
-    vendorID: {
+    EventCoordinatorID: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: "User",
+            model: "EventCoordinator",
             key: "id"
         }
-    },
-    fullName: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    mobileNo: {
-        type: DataTypes.STRING,
-        allowNull: false
     },
     notes: {
         type: DataTypes.TEXT,
         allowNull: true
     },
     status: {
-        type: DataTypes.ENUM('Book', 'Cancel'),
+        type: DataTypes.ENUM('BOOK', 'PENDING','CANCEL'),
         allowNull: false,
         defaultValue: 'Book'
     },

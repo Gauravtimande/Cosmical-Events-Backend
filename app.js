@@ -4,6 +4,10 @@ import bodyParser from "body-parser"
 import cors from "cors";
 import { isDBConnected } from "./config/db.config";
 import loggerMiddleware from "./middlewares/loggerMiddleware";
+
+import { userRouter } from "./routes/User-router";
+import { VendorServiceRouter } from "./routes/VendorService-routers";
+
 const app = express();
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -20,10 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 isDBConnected()
+
+
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use(loggerMiddleware);
 
+app.use("/api/v1/User", userRouter)
+app.use("/api/v2/Vendor",VendorServiceRouter)
 
 
 if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "staging") {

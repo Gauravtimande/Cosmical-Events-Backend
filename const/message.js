@@ -22,8 +22,9 @@ export const HTTP_MESSAGES = {
     NOT_AUTHORIZED : "You are not authorized to access this page",
     PROFILE_UPDATED_SUCCESSION : "Profile picture updated successfully",
     STATUS_SUCCESS_UPDATED : "Status updated Successfully",
-    APPOINTMENT_SUCCESS_BOOK : "Appointment__BOOK"
-  
+    APPOINTMENT_SUCCESS_BOOK : "Appointment__BOOK",
+    VENDORSERVICE_ADD_SUCCESS : "Vendor Service Add Successfully",
+    VENDORSERVICE_NOT_ADD_SUCCESS : "Vendor Service Not Add Successfully"
  
   }
 };

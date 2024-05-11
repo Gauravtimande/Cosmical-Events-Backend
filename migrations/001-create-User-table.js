@@ -7,14 +7,18 @@ module.exports = {
      * Add altering commands here.
      *
      * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     * await queryInterface.createTable('User', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("User", {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
+      },
+      fullname: {
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       email: {
         type: Sequelize.TEXT,
@@ -30,7 +34,7 @@ module.exports = {
       },
       role: {
         type: Sequelize.ENUM,
-        values: ["ADMIN","VENDOR","USER","EVENT-COORDINATOR"],
+        values: ["ADMIN","VENDOR","USER"],
         // defaultValue : "VENDOR"
       },
       mobile_number: {
@@ -71,6 +75,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("User");
+    await queryInterface.dropTable("Users");
   }
 };
