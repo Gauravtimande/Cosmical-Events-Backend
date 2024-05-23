@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
+const Users = require("./Users");
+const Feedbacks = require("./Feedbacks");
 
 
 const VendorServices = sequelize.define("VendorServices", {
@@ -13,7 +15,7 @@ const VendorServices = sequelize.define("VendorServices", {
     type: DataTypes.UUID, 
     allowNull: false,
     references: {
-      model: "Users", 
+      model: "Vendors", 
       key: "id"
     }
   },
@@ -71,5 +73,10 @@ const VendorServices = sequelize.define("VendorServices", {
 }, {
   timestamps: true
 });
+
+// Define association with Feedback
+VendorServices.hasMany(Feedbacks, { foreignKey: 'vendorID', as: 'feedbacks' });
+
+// Define association with Users
 
 module.exports = VendorServices;

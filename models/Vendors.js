@@ -1,12 +1,12 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
-const VendorServices = require("./VendorServices");
+// const VendorServices = require("./VendorServices");
 
-const Feedbacks = require("./Feedbacks");
+// const Feedbacks = require("./Feedbacks");
 
 
 
-const Users = sequelize.define("Users", {
+const Vendors = sequelize.define("Vendors", {
   id: {
     allowNull: false,
     primaryKey: true,
@@ -31,8 +31,8 @@ const Users = sequelize.define("Users", {
   },
   role: {
     type: DataTypes.ENUM,
-    values: ["USER"],
-    defaultValue: "USER"
+    values: [ "VENDOR",],
+    defaultValue:"VENDOR"
   },
   is_deleted: {
     type: DataTypes.BOOLEAN,
@@ -42,13 +42,13 @@ const Users = sequelize.define("Users", {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
-  active_step: {
+  active_step:{
     type: DataTypes.INTEGER,
     defaultValue: 0
   },
   mobile_number: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false 
   },
   token: {
     type: DataTypes.TEXT
@@ -56,9 +56,8 @@ const Users = sequelize.define("Users", {
 }, {
   timestamps: true
 });
-Users.hasMany(VendorServices, { foreignKey: 'vendor_id', as: 'vendorServices' });
+// Users.hasMany(VendorServices, { foreignKey: 'vendor_id', as: 'vendorServices' }); 
 
-Users.hasMany(Feedbacks, { foreignKey: 'userID', as: 'feedbacks' });
+// Users.hasMany(Feedbacks, { foreignKey: 'userID', as: 'feedbacks' });
 
-module.exports = Users;
-
+module.exports = Vendors;

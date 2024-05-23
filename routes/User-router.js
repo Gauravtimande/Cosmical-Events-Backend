@@ -11,5 +11,7 @@ const upload = multer({
 export const userRouter = express.Router();
 
 // Define routes with proper callback functions
+userRouter.get("/ShowAll-Vendor",userControllers.ShowAllVendor );
 userRouter.post("/register-user",userControllers.registerUser);
+userRouter.post("/register-vendor",userControllers.registerVendor);
 userRouter.post("/login",userControllers.login );

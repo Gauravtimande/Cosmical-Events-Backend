@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
-const Feedback = sequelize.define("Feedback", {
+const Feedbacks = sequelize.define("Feedbacks", {
     id: {
         allowNull: false,
         primaryKey: true,
@@ -21,7 +21,7 @@ const Feedback = sequelize.define("Feedback", {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: "Users",
+            model: "Vendors",
             key: "id"
         }
     },
@@ -41,4 +41,4 @@ const Feedback = sequelize.define("Feedback", {
     timestamps: true
 });
 
-module.exports = Feedback;
+module.exports = Feedbacks;

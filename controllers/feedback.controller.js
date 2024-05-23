@@ -3,13 +3,13 @@ import response from "../const/response"
 import { HTTP_MESSAGES } from "../const/message"
 import Appointment from "../models/Appointment";
 import { where } from "sequelize";
-import Feedback from "../models/Feedback";
+import Feedback from "../models/Feedbacks";
 
 export const CreateFeedback = async (req, res) => {
 
     try {
         const {userID, vendorID, comment, rating } = req.body
-        const feedback = await Appointment.create({
+        const feedback = await Feedback.create({
 
             userID: userID,
             vendorID: vendorID,

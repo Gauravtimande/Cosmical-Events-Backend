@@ -1,7 +1,7 @@
 import response from "../const/response"
 import { HTTP_MESSAGES } from "../const/message"
 import VendorServices from "../models/VendorServices"
-import { where } from "sequelize";
+
 
 
 

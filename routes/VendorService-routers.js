@@ -10,7 +10,7 @@ const upload = multer({
 
 export const VendorServiceRouter = express.Router();
 
-VendorServiceRouter.post("/Add-VendorService", upload.array('image'), VendorServiceControlers.createVendorServices);
+VendorServiceRouter.post("/Add-VendorService-ino", upload.array('image'),VendorServiceControlers.createVendorServices );
 VendorServiceRouter.get("/All-VendorService",  VendorServiceControlers.ShowAllVendorServices);
 
 

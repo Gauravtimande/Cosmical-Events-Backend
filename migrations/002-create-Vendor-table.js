@@ -9,7 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('User', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("Vendors", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -34,8 +34,8 @@ module.exports = {
       },
       role: {
         type: Sequelize.ENUM,
-        values: [ "USER"],
-        defaultValue : "USER"
+        values: [ "VENDOR"],
+        defaultValue : "VENDOR"
       },
       mobile_number: {
         type: Sequelize.STRING,
@@ -77,8 +77,7 @@ module.exports = {
      * 
      */
     // Drop the child tables first
-    await queryInterface.dropTable("VendorServices");
-    await queryInterface.dropTable("Feedbacks");
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("Vendors");
+  
   }
 };
