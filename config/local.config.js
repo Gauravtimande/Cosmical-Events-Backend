@@ -5,9 +5,9 @@ export const config = {
 	db: {
 	  host: "localhost",
 	  port: 3306,
-	  username: "Pushkaran",
+	  username: "Gaurav",
 	  database: "Cosmical-Events",
-	  password: "push@123"
+	  password: "Gaurav@123"
 	}
   };
 config.baseUrl = `${config.host}:${config.port}/`;
