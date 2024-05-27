@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
-const EventCoordinator = sequelize.define("EventCoordinator", {
+const EventCoordinators = sequelize.define("EventCoordinators", {
   id: {
     allowNull: false,
     primaryKey: true,
@@ -52,4 +52,4 @@ const EventCoordinator = sequelize.define("EventCoordinator", {
   timestamps: true
 });
 
-module.exports = EventCoordinator;
+module.exports = EventCoordinators;

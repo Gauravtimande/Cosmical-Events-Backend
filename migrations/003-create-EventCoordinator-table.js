@@ -9,7 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('EventCoordinator', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("EventCoordinator", {
+    await queryInterface.createTable("EventCoordinators", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -75,6 +75,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('EventCoordinator');
      */
-    await queryInterface.dropTable("EventCoordinator");
+    await queryInterface.dropTable("EventCoordinators");
   }
 };
