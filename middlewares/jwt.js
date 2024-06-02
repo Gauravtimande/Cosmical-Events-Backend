@@ -9,6 +9,7 @@ export const verifyJWT = (req,res,next) => {
   try{
     const decoded = jwt.verify(token, JWT_KEY);
     req.user = decoded;
+    console.log("jwt validation done");
     return next();
   }catch(err){
     console.log("error",err)
