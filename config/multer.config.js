@@ -1,31 +1,29 @@
-/* eslint-disable node/callback-return */
 import path from "path";
 import multer from "multer";
 import fse from "fs-extra";
 
-const storage = multer.diskStorage({
+// Storage configuration for images
+const imageStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    let dirpath = "uploads/";
-    let docDirPath = "uploads/docs/"
-    if (file.fieldname == "image") {
-      const fileDir = path.resolve(dirpath);
-      fse.ensureDirSync(fileDir); // Make sure that the upload path exits
-
-      cb(null, fileDir);
-    }
-    if (file.fieldname == "docs") {
-      const fileDir = path.resolve(docDirPath);
-      fse.ensureDirSync(fileDir); // Make sure that the upload path exits
-
-      cb(null, fileDir);
-    }
+    const dirPath = "uploads/";
+    fse.ensureDirSync(path.resolve(dirPath)); // Ensure the directory exists
+    cb(null, path.resolve(dirPath));
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.originalname
-    );
+    cb(null, `${Date.now()}-${file.originalname}`); // Prefix with timestamp to avoid conflicts
   }
 });
 
-export { storage };
+// Storage configuration for videos
+const videoStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const dirPath = "VideoUploads/";
+    fse.ensureDirSync(path.resolve(dirPath)); // Ensure the directory exists
+    cb(null, path.resolve(dirPath));
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`); // Prefix with timestamp to avoid conflicts
+  }
+});
+
+export { imageStorage, videoStorage };

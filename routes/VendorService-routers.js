@@ -1,19 +1,47 @@
 import express from "express";
-import { storage } from "../config/multer.config";
-const { sequelize } = require('../config/db.config');
+import fse from "fs-extra";
 import multer from "multer";
-import VendorServices from "../models/VendorServices"
+import path from "path";
 const VendorServiceControlers = require('../controllers/VendorServices.controller')
 
 
 const upload = multer({
-    storage: storage
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      let dirPath;
+      if (file.fieldname === "image") {
+        dirPath = "uploads/";
+      } else if (file.fieldname === "video") {
+        dirPath = "VideoUploads/";
+      }
+      fse.ensureDirSync(path.resolve(dirPath));
+      cb(null, path.resolve(dirPath));
+    },
+    filename: function (req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`);
+    }
+  }),
+  limits: {
+    fileSize: {
+      image: 15 * 1024 * 1024, // 15 MB in bytes for images
+      video: 1024 * 1024 * 1024 // 1 GB in bytes for videos
+    }
+  },
+  fileFilter: function(req, file, cb) {
+    if (file.fieldname === "image" && !file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error('Only image files are allowed!'));
+    }
+    if (file.fieldname === "video" && !file.originalname.match(/\.(mp4|mov|avi|wmv)$/)) {
+      return cb(new Error('Only video files are allowed!'));
+    }
+    cb(null, true);
+  }
 });
 
 export const VendorServiceRouter = express.Router();
 
-VendorServiceRouter.post("/Add-VendorService-ino", upload.array('image'),VendorServiceControlers.createVendorServices );
-VendorServiceRouter.get("/All-VendorService",  VendorServiceControlers.ShowAllVendorServices);
+VendorServiceRouter.post("/Add-VendorService-info", upload.fields([{ name: 'image', maxCount: 10 }, { name: 'video', maxCount: 1 }]), VendorServiceControlers.createVendorServices);
+VendorServiceRouter.get("/All-VendorService", VendorServiceControlers.ShowAllVendorServices);
 
 
 //in active vendor service 
@@ -26,46 +54,6 @@ VendorServiceRouter.post("/On-Active-VendorService", VendorServiceControlers.Act
 // permanently delete vendor service 
 VendorServiceRouter.delete("/Delete-VendorService", VendorServiceControlers.DeleteVendorServices);
 
-// Function to get current ENUM values
-async function getEnumValues() {
-    const [results, metadata] = await sequelize.query(`
-      SHOW COLUMNS FROM VendorServices LIKE 'serviceType';
-    `);
-  
-    if (results.length === 0) {
-      throw new Error('Column not found');
-    }
-  
-    const enumValues = results[0].Type.match(/enum\((.*)\)/)[1].split(',').map(value => value.trim().replace(/^'(.*)'$/, '$1'));
-  
-    return enumValues;
-  }
 
-VendorServiceRouter.post('/add-enum-value', async (req, res) => {
-    const { enumValue } = req.body;
-
-    try {
-      // Get current ENUM values
-      const currentEnumValues = await getEnumValues();
-  
-      // Add the new value if it doesn't already exist
-      if (!currentEnumValues.includes(enumValue)) {
-        currentEnumValues.push(enumValue);
-      } else {
-        return res.status(400).json({ error: 'Enum value already exists' });
-      }
-  
-      // Construct the query to alter the enum type
-      const query = `
-        ALTER TABLE VendorServices MODIFY COLUMN serviceType ENUM(${currentEnumValues.map(value => `'${value}'`).join(', ')});
-      `;
-  
-      // Execute the raw query
-      await sequelize.query(query);
-  
-      return res.status(200).json({ message: 'Enum value added successfully' });
-    } catch (error) {
-      console.error('Error adding enum value:', error);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+VendorServiceRouter.post('/add-enum-value', VendorServiceControlers.AddVendorServices);
+VendorServiceRouter.post('/delete-enum-value', VendorServiceControlers.DeleteVendorService);

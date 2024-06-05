@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.static("files"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); 
 isDBConnected()
 
 
