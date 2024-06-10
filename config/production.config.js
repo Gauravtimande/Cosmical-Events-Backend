@@ -1,6 +1,6 @@
 export const config = {
 	host: "https://cep.arcassetz.in",
-	port: 8050,
+	port: 19088,
 	baseUrl: "",
 	db: {
 		host: "localhost",
