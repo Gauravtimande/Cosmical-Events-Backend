@@ -1,5 +1,5 @@
 export const config = {
-	host: "https://cep.arcassetz.in",
+	host: "https://cosmical-events-backend.onrender.com",
 	port: process.env.PD_PORT,
 	baseUrl: "",
 	db: {
