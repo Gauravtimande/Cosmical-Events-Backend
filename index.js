@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
     // const http = require("http")
     
     const PORT = envData.config?.port
-    http.createServer(app).listen(8070);
+    http.createServer(app).listen(8050);
     server.on("listening", () => { console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`) });
 } else {
     const http = require("http")

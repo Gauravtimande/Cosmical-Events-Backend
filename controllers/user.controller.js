@@ -8,6 +8,10 @@ import VendorServices from "../models/VendorServices";
 import Feedback from "../models/Feedbacks";
 import Vendors from "../models/Vendors";
 import EventCoordinators from "../models/EventCoordinators";
+
+
+
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -156,7 +160,7 @@ export const registerVendor = async (req, res) => {
       email: email,
       password: bcrypt.hashSync(password, 10),
       role: role,
-      mobile_number: `+91${mobile_number}`, // Store mobile number in +91 format
+      mobile_number: `+91${mobile_number}`, 
       token: token, // Save the generated token to the database
       active_step: 1
     });
