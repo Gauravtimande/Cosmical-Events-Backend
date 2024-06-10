@@ -1,6 +1,6 @@
 export const config = {
 	host: "http://localhost",
-	port: 5000,
+	port: 8070,
 	baseUrl: "",
 	db: {
 		host: "localhost",

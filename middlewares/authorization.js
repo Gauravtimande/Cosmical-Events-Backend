@@ -1,55 +1,50 @@
 import { HTTP_MESSAGES } from "../const/message";
 import response from "../const/response";
-import User from "../models/User";
-
-export const mustBeAdmin = async (req, res, next) => {
-  const user_id = req.user.user_id;
-  const user = await User.findOne({
-    attributes: ["role"],
-    where: { id: user_id }
-  });
-  if (user.role === "ADMIN") {
-    return next(); // Add return statement here
-  } else {
-    return response.unAuthorizedErrorMsgResponse(
-      res,
-      403,
-      HTTP_MESSAGES.EN.NOT_AUTHORIZED
-    );
-  }
-};
+import Users from "../models/Users";
+import Vendors from "../models/Vendors";
 
 export const mustBeVendor = async (req, res, next) => {
-  const user_id = req.user._id
-  const user = await User.findOne({
-    attributes: ["role"],
-    where: { id: user_id }
-  });
-  if (user.role === "VENDOR") {
-    return next(); // Add return statement here
-  } else {
-    return response.unAuthorizedErrorMsgResponse(
-      res,
-      403,
-      HTTP_MESSAGES.EN.NOT_AUTHORIZED
-    );
+  try {
+    const user_id = req.user._id;
+    const vendor = await Vendors.findOne({
+      attributes: ["role"],
+      where: { id: user_id }
+    });
+
+    if (vendor && vendor.role === "VENDOR") {
+      return next();
+    } else {
+      return response.unAuthorizedErrorMsgResponse(
+        res,
+        403,
+        HTTP_MESSAGES.EN.NOT_AUTHORIZED
+      );
+    }
+  } catch (error) {
+    return response.errorMsgResponse(res, 500, error.message);
   }
 };
+
+
 
 export const mustBeUser = async (req, res, next) => {
-  const user_id = req.user._id;
-  const user = await User.findOne({
-    attributes: ["role"],
-    where: { id: user_id }
-  });
-  if (user.role === "USER") {
-    return next(); // Add return statement here
-  } else {
-    return response.unAuthorizedErrorMsgResponse(
-      res,
-      403,
-      HTTP_MESSAGES.EN.NOT_AUTHORIZED
-    );
+  try {
+    const user_id = req.user._id;
+    const user = await Users.findOne({
+      attributes: ["role"],
+      where: { id: user_id }
+    });
+
+    if (user && user.role === "USER") {
+      return next();
+    } else {
+      return response.unAuthorizedErrorMsgResponse(
+        res,
+        403,
+        HTTP_MESSAGES.EN.NOT_AUTHORIZED
+      );
+    }
+  } catch (error) {
+    return response.errorMsgResponse(res, 500, error.message);
   }
 };
-

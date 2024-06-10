@@ -44,7 +44,12 @@ module.exports = {
       image: {
         type: Sequelize.JSON, 
         defaultValue: [],
-        allowNull: true,
+        allowNull: false,
+      },
+      Video: {
+        type: Sequelize.JSON, 
+        defaultValue: [],
+        allowNull: false,
       },
       location: {
         type: Sequelize.TEXT,

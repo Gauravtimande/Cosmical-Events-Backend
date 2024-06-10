@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1af01776.css",
+    "main.js": "/static/js/main.d9049789.js",
+    "static/js/453.223d1eb9.chunk.js": "/static/js/453.223d1eb9.chunk.js",
+    "static/media/remixicon.svg?t=1708865856766": "/static/media/remixicon.7735fab8dbf8ff78afe9.svg",
+    "static/media/remixicon.eot?t=1708865856766": "/static/media/remixicon.8542c1bb279bcd77063a.eot",
+    "static/media/remixicon.ttf?t=1708865856766": "/static/media/remixicon.4c942de19d980993f612.ttf",
+    "static/media/Desktop15.jpg": "/static/media/Desktop15.aaf9eb1f4761f1b1dc75.jpg",
+    "static/media/sectionbg.png": "/static/media/sectionbg.99eab4752c3399114a28.png",
+    "static/media/remixicon.woff?t=1708865856766": "/static/media/remixicon.28ceff39ee3e17dc99db.woff",
+    "static/media/KaushanScript-Regular.ttf": "/static/media/KaushanScript-Regular.a668b3d996f7c50fb3fe.ttf",
+    "static/media/remixicon.woff2?t=1708865856766": "/static/media/remixicon.39f4def56d0e8712909a.woff2",
+    "static/media/Desktop26.png": "/static/media/Desktop26.3113c29028043784cb47.png",
+    "static/media/AlexBrush-Regular.ttf": "/static/media/AlexBrush-Regular.2931994a26f7d46dab66.ttf",
+    "static/media/sectionbgimage2.jpeg": "/static/media/sectionbgimage2.b375bc13dcafe2fd99ee.jpeg",
+    "static/media/Satisfy-Regular.ttf": "/static/media/Satisfy-Regular.32a6713537cf5e1e82f2.ttf",
+    "static/media/Reality Stone.ttf": "/static/media/Reality Stone.29039f487f381709af81.ttf",
+    "index.html": "/index.html",
+    "main.1af01776.css.map": "/static/css/main.1af01776.css.map",
+    "main.d9049789.js.map": "/static/js/main.d9049789.js.map",
+    "453.223d1eb9.chunk.js.map": "/static/js/453.223d1eb9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1af01776.css",
+    "static/js/main.d9049789.js"
+  ]
+}

@@ -46,6 +46,10 @@ const VendorServices = sequelize.define("VendorServices", {
     type: DataTypes.JSONB,
     allowNull: false
   },
+  Video: {
+    type: DataTypes.JSONB,
+    allowNull: false
+  },
   location: {
     type: DataTypes.TEXT,
     allowNull: true

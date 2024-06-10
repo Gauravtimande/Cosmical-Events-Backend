@@ -3,29 +3,31 @@ import { HTTP_MESSAGES } from "../const/message"
 import VendorServices from "../models/VendorServices"
 const { sequelize } = require('../config/db.config');
 
-
-
-
-
 export const createVendorServices = async (req, res) => {
     try {
         const { vendor_id, serviceType, description, priceRange, serviceSpecificInfo, location, city, contactNo, email } = req.body;
-        console.log("req.body", req.body)
-
+        console.log('body:', req.body);
         let images = [];
-        if (req.files && req.files.length > 0) {
-            images = req.files;
+        let video = null;
+
+        console.log('Files:', req.files); 
+        if (req.files) {
+            if (req.files.image) {
+                images = req.files.image.map(file => file.path); 
+            }
+            if (req.files.video && req.files.video.length > 0) {
+                video = req.files.video[0].path; 
+            }
         }
-        console.log('images', images)
-        console.log('vendorID', vendor_id)
 
         const vendorService = await VendorServices.create({
-            vendor_id: vendor_id,
+            vendor_id,
             serviceType,
             description,
             priceRange,
             serviceSpecificInfo,
             image: images,
+            video: video,
             location,
             city,
             contactNo,
@@ -48,8 +50,6 @@ export const createVendorServices = async (req, res) => {
         );
     }
 };
-
-
 
 
 export const ShowAllVendorServices = async (req, res) => {

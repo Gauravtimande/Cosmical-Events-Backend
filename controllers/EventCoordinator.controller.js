@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import EventCoordinators from "../models/EventCoordinator";
+import EventCoordinators from "../models/EventCoordinators";
 import { JWT_KEY } from "../const/credentials";
 import bcrypt from "bcrypt";
 import response from "../const/response";
@@ -8,7 +8,7 @@ export const registerEventCoordinator = async (req, res) => {
     try {
       const { fullname, email, password, role, mobile_number } = req.body;
   
-      // Check if the user already exists
+      console.log('req.body',req.body)
       const existingUser = await EventCoordinators.findOne({ where: { email } });
       if (existingUser) {
         console.log('EventCoordinator with this email already exists');

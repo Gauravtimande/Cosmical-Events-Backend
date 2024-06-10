@@ -7,30 +7,30 @@ const feedbackControllers =require("../controllers/feedback.controller");
 const serviceControllers=require("../controllers/VendorServices.controller")
 const eventControllers=require("../controllers/EventCoordinator.controller")
 const {  meetingNotes ,registerEventCoordinator,feedbacks,registerUsers,registerVendors,vendorservices } = require("../middlewares/validate")
-import { verifyJWT as authenticateToken} from "../middlewares/jwt"; 
 
 
-// Multer Configuration
-const upload = multer({
-    storage: storage
-});feedbacks
+
+
 
 export const userRouter = express.Router();
 
 // Define routes with proper callback functions
-userRouter.get("/ShowAll-Vendor",authenticateToken, userControllers.ShowAllVendor );
-userRouter.post("/meeting-notes",authenticateToken, meetingNotes,vendorControllers.BookAppointment);
- 
-userRouter.post("/register-EventCoordinator",authenticateToken, registerEventCoordinator,eventControllers.registerEventCoordinator); // check this Event cordinator 
+userRouter.get("/ShowAll-Vendor", userControllers.ShowAllVendor );
 
-userRouter.post("/feedback", authenticateToken,feedbacks,feedbackControllers.CreateFeedback);
+
+userRouter.post("/register-EventCoordinator",eventControllers.registerEventCoordinator); // check this Event cordinator 
+
+
+
+
+// sign up Api
 userRouter.post("/register-user",userControllers.registerUser);
-userRouter.get("/register-user", registerUsers,userControllers.registerUser);
-
-userRouter.post("/register-Vendor",authenticateToken, registerVendors,userControllers.registerVendor);
-userRouter.post("/vendor-services", vendorservices,serviceControllers.createVendorServices);
+userRouter.post("/register-Vendor",userControllers.registerVendor);
 
 
+
+
+// sign in Api
 userRouter.post("/login",userControllers.login );
 
 
