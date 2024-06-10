@@ -1,13 +1,13 @@
 export const config = {
 	host: "https://cep.arcassetz.in",
-	port: 8050,
+	port: process.env.PD_PORT,
 	baseUrl: "",
 	db: {
-		host: "localhost",
-		port: 3306,
-		username: "Gaurav",
-		database: "Cosmical-Events",
-		password: "Gaurav@123"
+		host: process.env.DB_HOST || "localhost",
+		port: process.env.DB_PORT || 3306,
+		username: process.env.DB_USERNAME || "Gaurav",
+		database: process.env.DB_NAME || "Cosmical-Events",
+		password: process.env.DB_PASSWORD || "Gaurav@123"
 	  }
   };
   config.baseUrl = `${config.host}:${config.port}/`;
