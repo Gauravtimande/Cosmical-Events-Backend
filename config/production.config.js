@@ -1,5 +1,5 @@
 export const config = {
-	host: "https://cosmical-events-backend.onrender.com",
+	host: process.env.PD_HOST,
 	port: process.env.PD_PORT,
 	baseUrl: "",
 	db: {

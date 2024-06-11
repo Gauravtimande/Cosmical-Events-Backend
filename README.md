@@ -188,8 +188,25 @@ export const searchBus = async (req, res) => {
     );
   }
 };
-=======
+
 
 ALTER TYPE "enum_Appointments_appointment_type" ADD VALUE 'LABTEST' AFTER 'VACCINATION';
 # bus_booking_app
 >>>>>>> 3d060dc462162f1874be8c72f9178731662ea06b
+
+
+
+if you have a ssl 
+then change in index.js file 
+add the path of ssl in  
+ var https_options = {
+      key: fs.readFileSync("/home/ubuntu/SSL/STAR_replybot_ai.key"),
+      cert: fs.readFileSync("/home/ubuntu/SSL/STAR.replybot.ai.crt"),
+      ca: [
+        fs.readFileSync('/home/ubuntu/SSL/STAR.replybot.ai.p7b'),
+        fs.readFileSync('/home/ubuntu/SSL/STAR.replybot.ai.ca-bundle')
+      ]
+    }
+if you change the port no than change in .env file  PD_PORT=8000  as well as domain name PD_HOST="https://cosmical-events-backend.onrender.com"
+
+and change in react js env.production file REACT_APP_BASE_URL = "https://cosmical-events-backend.onrender.com"
