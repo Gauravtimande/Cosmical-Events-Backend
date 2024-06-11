@@ -136,11 +136,11 @@ export const SoftDeleteCoordinator = async (req, res) => {
 export const PermanentDeleteCoordinator = async (req, res) => {
   const ID = req.body
   try {
-      const AllCoordinator = await EventCoordinators.destroy({ where: ID });
+      const ParticularCoordinator = await EventCoordinators.destroy({ where: ID });
       return response.successResponse(
           res,
           200,
-          { AllCoordinator },
+          {  ParticularCoordinator  },
       );
   } catch (error) {
       console.error(error);
@@ -182,6 +182,5 @@ export const updatedEventCoordinator = async(req,res)=> {
         500,
         {},
     );
-}
-
-}
+  }
+};

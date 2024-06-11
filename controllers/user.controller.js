@@ -219,3 +219,140 @@ export const ShowAllVendor = async (req, res) => {
     );
   }
 };
+
+
+export const showAllUsers =async(req,res)=>{
+  try{
+    const AllUsers = await Users.findAll();
+    return response.successResponse(
+      res,
+      200,
+      {AllUsers},
+    );
+
+  }
+  catch(error){
+    return response.errorResponse(
+      res,
+      500,
+      {},
+    );
+
+  }
+}
+
+
+
+export const InActiveUser = async (req, res) => {
+  const ID = req.body
+  try {
+      const InActiveUser  = await Users.update({ is_active: false }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { InActiveUser },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+export const ActiveUser = async (req, res) => {
+  const ID = req.body
+  try {
+      const ActiveUser = await Users.update({ is_active: true }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { ActiveUser },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+// this function is for soft delete of user done using update
+export const SoftDeleteUser = async (req, res) => {
+  const ID = req.body;
+  try {
+      const SoftDelete = await Users.update({ is_deleted: true }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { SoftDelete },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+// this is for premanently deleting user
+export const PermanentDeleteUser = async (req, res) => {
+  const ID = req.body
+  try {
+      const ParticularUser = await Users.destroy({ where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { ParticularUser },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+// this is for updating the name , email of user
+
+export const UpdatedUser = async(req,res)=> {
+  const {id, fullname ,email}=req.body;
+  try{
+    const updatedUserDetails = await Users.update(
+      {fullname,email},
+      {where:{id}}
+    );
+
+    if(updatedUserDetails[0]=== 0)
+      {
+        return response.errorResponse(
+          res,
+          500,
+          {},
+        );
+      }
+      return response.successResponse(
+        res,
+        200,
+        {updatedUserDetails},
+      );  
+  }
+  catch (error) {
+    console.error(error);
+    return response.errorResponse(
+        res,
+        500,
+        {},
+    );
+  }
+};

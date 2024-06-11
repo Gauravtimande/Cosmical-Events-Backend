@@ -20,16 +20,35 @@ export const userRouter = express.Router();
 // CRUD operation of Event Coordinator
 userRouter.post("/register-EventCoordinator",eventControllers.registerEventCoordinator); // check this Event cordinator 
 userRouter.get("/showAll-EventCoordinator",eventControllers.ShowAllCoordinators);
+
 userRouter.put("/inactive-EventCoordinator",eventControllers.InActiveCoordinator);
+
 userRouter.put("/Active-EventCoordinator",eventControllers.ActiveEventCoordinator);
 
 userRouter.put("/SoftDelete-EventCoordinator",eventControllers.SoftDeleteCoordinator);
+
 userRouter.delete("/PermanentDelete-EventCoordinator",eventControllers.PermanentDeleteCoordinator);
 userRouter.put("/update-EventCoordinator",eventControllers.updatedEventCoordinator);
 
 
+
+
+
 // CRUD operation of User
 userRouter.post("/register-user",userControllers.registerUser);
+userRouter.get("/showAll-Users",userControllers.showAllUsers);
+
+userRouter.put("/inactive-User",userControllers.InActiveUser);
+
+userRouter.put("/Active-User",userControllers.ActiveUser);
+
+userRouter.put("/SoftDelete-User",userControllers.SoftDeleteUser);
+
+userRouter.delete("/PermanentDelete-User",userControllers.PermanentDeleteUser);
+userRouter.put("/update-User",userControllers.UpdatedUser);
+
+
+
 
 
 // CRUD operation of Vendor
