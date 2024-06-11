@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "Gaurav",
+    "username": "Pushkaran",
     "database": "Cosmical-Events",
-    "password": "Gaurav@123",
+    "password": "push@123",
     "host": "localhost",
     "dialect": "mysql"
   },
   "local": {
-    "username": "Gaurav",
+    "username": "Pushkaran",
     "database": "Cosmical-Events",
-    "password": "Gaurav@123",
+    "password": "push@123",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "username": "Gaurav",
+    "username": "Pushkaran",
     "database": "Cosmical-Events",
-    "password": "Gaurav@123",
+    "password": "push@123",
     "host": "localhost",
     "dialect": "mysql"
   }

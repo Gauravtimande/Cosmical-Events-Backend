@@ -76,7 +76,7 @@ export const ShowAllVendorServices = async (req, res) => {
 export const InActiveVendorServices = async (req, res) => {
     const ID = req.body
     try {
-        const InActiveVendorService = await VendorServices.update({ is_deleted: true }, { where: ID });
+        const InActiveVendorService = await VendorServices.update({ is_active: false }, { where: ID });
         return response.successResponse(
             res,
             200,
@@ -98,7 +98,7 @@ export const InActiveVendorServices = async (req, res) => {
 export const ActiveVendorServices = async (req, res) => {
     const ID = req.body
     try {
-        const ActiveVendorService = await VendorServices.update({ is_deleted: false }, { where: ID });
+        const ActiveVendorService = await VendorServices.update({ is_active: true }, { where: ID });
         return response.successResponse(
             res,
             200,
@@ -115,7 +115,7 @@ export const ActiveVendorServices = async (req, res) => {
 };
 
 
-
+// this is permanent delete
 export const DeleteVendorServices = async (req, res) => {
     const ID = req.body
     try {

@@ -54,4 +54,134 @@ export const registerEventCoordinator = async (req, res) => {
       res.status(500).json({ message: 'Something went wrong' });
     }
   }
+
+  export const ShowAllCoordinators = async (req, res) => {
+    try {
+        const AllEventCoordinator = await EventCoordinators.findAll();
+        return response.successResponse(
+            res,
+            200,
+            { AllEventCoordinator },
+        );
+    } catch (error) {
+        console.error(error);
+        return response.errorResponse(
+            res,
+            500,
+            {},
+        );
+    }
+};
+
+export const InActiveCoordinator = async (req, res) => {
+  const ID = req.body
+  try {
+      const InActiveCoordinator = await EventCoordinators.update({ is_active: false }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { InActiveCoordinator },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+export const ActiveEventCoordinator = async (req, res) => {
+  const ID = req.body
+  try {
+      const ActiveEventCoordinator = await EventCoordinators.update({ is_active: true }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { ActiveEventCoordinator },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+export const SoftDeleteCoordinator = async (req, res) => {
+  const ID = req.body;
+  try {
+      const AllSoftDelete = await EventCoordinators.update({ is_deleted: true }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { AllSoftDelete },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+export const PermanentDeleteCoordinator = async (req, res) => {
+  const ID = req.body
+  try {
+      const AllCoordinator = await EventCoordinators.destroy({ where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { AllCoordinator },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
   
+
+export const updatedEventCoordinator = async(req,res)=> {
+  const {id, fullname ,email}=req.body;
+  try{
+    const updatedCoordinator = await EventCoordinators.update(
+      {fullname,email},
+      {where:{id}}
+    );
+
+    if(updatedCoordinator[0]=== 0)
+      {
+        return response.errorResponse(
+          res,
+          500,
+          {},
+        );
+      }
+      return response.successResponse(
+        res,
+        200,
+        {updatedCoordinator},
+      );  
+  }
+  catch (error) {
+    console.error(error);
+    return response.errorResponse(
+        res,
+        500,
+        {},
+    );
+}
+
+}
