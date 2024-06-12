@@ -55,6 +55,15 @@ userRouter.put("/update-User",userControllers.UpdatedUser);
 userRouter.post("/register-Vendor",userControllers.registerVendor);
 userRouter.get("/ShowAll-Vendor", userControllers.ShowAllVendor );
 
+userRouter.put("/inactive-Vendor",userControllers.InActiveVendor);
+
+userRouter.put("/Active-Vendor",userControllers.ActiveVendor);
+
+userRouter.put("/SoftDelete-Vendor",userControllers.SoftDeleteVendor);
+
+userRouter.delete("/PermanentDelete-Vendor",userControllers.PermanentDeleteVendor);
+userRouter.put("/updateDetails-Vendor",userControllers.UpdateVendor);
+
 
 
 

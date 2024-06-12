@@ -131,94 +131,6 @@ export const registerUser = async (req, res) => {
   }
 };
 
-export const registerVendor = async (req, res) => {
-  try {
-    const { fullname, email, password, role, mobile_number } = req.body;
-
-    console.log('body',req.body)
-    const existingVendor = await Vendors.findOne({ where: { email, mobile_number: `+91${mobile_number}` } });
-    if (existingVendor) {
-      console.log('Vendor with this email or mobile number already exists');
-      return res.status(409).json({ message: 'Email or mobile number already exists' });
-    }
-
-    // Generate JWT token
-    const token = jwt.sign(
-      {
-        email,
-        role: role,
-      },
-      JWT_KEY,
-      {
-        expiresIn: "24h",
-      }
-    );
-
-    // Create New Vendor in SQL
-    const newVendor = await Vendors.create({
-      fullname: fullname,
-      email: email,
-      password: bcrypt.hashSync(password, 10),
-      role: role,
-      mobile_number: `+91${mobile_number}`, 
-      token: token, // Save the generated token to the database
-      active_step: 1
-    });
-
-    // Send success response with token
-    res.status(200).json({
-      access_token: token,
-      user: {
-        id: newVendor.id,
-        fullname: newVendor.fullname,
-        email: newVendor.email,
-        role: newVendor.role
-      },
-      message: 'Vendor registered successfully'
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Something went wrong' });
-  }
-};
-
-
-export const ShowAllVendor = async (req, res) => {
-  try {
-    const AllVendors = await Vendors.findAll({
-      where: {
-        role: 'VENDOR'
-      },
-      include: [
-        {
-          model: VendorServices,
-          attributes: ['serviceType', 'email', 'contactNo', 'is_active'],
-          as: 'vendorServices',
-          include: [
-            {
-              model: Feedback,
-              attributes: ['comment', 'rating'],
-              as: 'feedback'
-            }
-          ]
-        }
-      ]
-    });
-
-    return response.successResponse(
-      res,
-      200,
-      { AllVendors },
-    );
-  } catch (error) {
-    console.error(error);
-    return response.errorResponse(
-      res,
-      500,
-      {},
-    );
-  }
-};
 
 
 export const showAllUsers =async(req,res)=>{
@@ -282,7 +194,7 @@ export const ActiveUser = async (req, res) => {
   }
 };
 
-// this function is for soft delete of user done using update
+// this function is for soft delete of User done using update
 export const SoftDeleteUser = async (req, res) => {
   const ID = req.body;
   try {
@@ -354,5 +266,241 @@ export const UpdatedUser = async(req,res)=> {
         500,
         {},
     );
+  }
+};
+
+
+
+
+
+// The Vendor CRUD functions are below 
+
+export const registerVendor = async (req, res) => {
+  try {
+    const { fullname, email, password, role, mobile_number } = req.body;
+
+    console.log('body',req.body)
+    const existingVendor = await Vendors.findOne({ where: { email, mobile_number: `+91${mobile_number}` } });
+    if (existingVendor) {
+      console.log('Vendor with this email or mobile number already exists');
+      return res.status(409).json({ message: 'Email or mobile number already exists' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      {
+        email,
+        role: role,
+      },
+      JWT_KEY,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    // Create New Vendor in SQL
+    const newVendor = await Vendors.create({
+      fullname: fullname,
+      email: email,
+      password: bcrypt.hashSync(password, 10),
+      role: role,
+      mobile_number: `+91${mobile_number}`, 
+      token: token, // Save the generated token to the database
+      active_step: 1
+    });
+
+    // Send success response with token
+    res.status(200).json({
+      access_token: token,
+      user: {
+        id: newVendor.id,
+        fullname: newVendor.fullname,
+        email: newVendor.email,
+        role: newVendor.role
+      },
+      message: 'Vendor registered successfully'
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+};
+
+
+// export const ShowAllVendor = async (req, res) => {
+//   try {
+//     const AllVendors = await Vendors.findAll({
+//       where: {
+//         role: 'VENDOR'
+//       },
+//       include: [
+//         {
+//           model: VendorServices,
+//           attributes: ['serviceType', 'email', 'contactNo', 'is_active'],
+//           as: 'vendorServices',
+//           include: [
+//             {
+//               model: Feedback,
+//               attributes: ['comment', 'rating'],
+//               as: 'feedback'
+//             }
+//           ]
+//         }
+//       ]
+//     });
+
+//     return response.successResponse(
+//       res,
+//       200,
+//       { AllVendors },
+//     );
+//   } catch (error) {
+//     console.error(error);
+//     return response.errorResponse(
+//       res,
+//       500,
+//       {},
+//     );
+//   }
+// };
+
+// This is to display all the Vendors
+export const ShowAllVendor =async(req,res)=>{
+  try{
+    const AllVendors =await Vendors.findAll();
+    return response.successResponse(
+      res,
+      200,
+      { AllVendors},
+
+    );
+
+  }
+  catch(error){
+    console.log(error);
+    return response.errorResponse(
+      res,
+      500,
+      {},
+
+    );
+
+  }
+}
+
+export const InActiveVendor = async (req, res) => {
+  const ID = req.body
+  try {
+      const InActiveVendor = await  Vendors.update({ is_active: false }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { InActiveVendor },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+
+export const ActiveVendor = async (req, res) => {
+  const ID = req.body;
+  try {
+      const ActiveVendor = await Vendors.update({ is_active: true }, { where: ID });
+      return response.successResponse(
+          res,
+          200,
+          { ActiveVendor },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+//This is for Soft delete of Vendor
+
+export const SoftDeleteVendor = async(req,res)=>{
+  
+  const ID=req.body;
+  try{
+    const SoftVendor=await Vendors.update({is_deleted:true},{where:ID});
+    return response.successResponse(
+      res,
+      200,
+      { SoftVendor},
+  );
+
+  }
+  catch(error){
+    console.error(error);
+    return response.errorResponse(
+        res,
+        500,
+        {},
+    );
+  }
+};
+
+
+//This is for Permanent Delete of Vendor
+export const PermanentDeleteVendor = async (req, res) => {
+  const ID = req.body
+  try {
+      const ParticularVendor = await Vendors.destroy({ where: ID });
+      return response.successResponse(
+          res,
+          200,
+          {  ParticularVendor  },
+      );
+  } catch (error) {
+      console.error(error);
+      return response.errorResponse(
+          res,
+          500,
+          {},
+      );
+  }
+};
+
+// Updating the vendors Name,Email
+
+export const UpdateVendor = async(req,res)=>{
+  const {id, fullname ,email}=req.body;
+  try{
+    const DetailUpdates = await Vendors.update({fullname,email},{where:{id}});
+    if(DetailUpdates[0] === 0)
+      {
+        return response.errorResponse(
+          res,
+          500,
+          {},
+        );
+      }
+
+      return response.successResponse(
+        res,
+        200,
+        {DetailUpdates},
+      );  
+
+  }
+  catch(error){
+    console.error(error);
+    return response.errorResponse(
+        res,
+        500,
+        {},
+    );
+
   }
 };
