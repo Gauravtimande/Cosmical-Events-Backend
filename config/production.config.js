@@ -1,5 +1,5 @@
 export const config = {
-	host: "https://cep.arcassetz.in",
+	host: process.env.PD_HOST,
 	port: process.env.PD_PORT,
 	baseUrl: "",
 	db: {

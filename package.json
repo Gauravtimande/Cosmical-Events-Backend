@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "NODE_ENV=development nodemon index.js",
     "start": "nodemon index.js",
-    "start:prod": "NODE_ENV=production node index.js"
+    "start:prod": "NODE_ENV=production node index.js",
+    "build": "npx sequelize-cli db:migrate"
   },
   "author": "",
   "license": "ISC",
