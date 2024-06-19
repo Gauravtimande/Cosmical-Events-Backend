@@ -4,10 +4,10 @@ export const config = {
 	baseUrl: "",
 	db: {
 		host: "localhost",
-		port: 3306,
-		username: "Gaurav",
+		port: 5432,
+		username: "postgres",
 		database: "Cosmical-Events",
-		password: "Gaurav@123"
+		password: "gaurav123"
 	  }
   };
 config.baseUrl = `${config.host}:${config.port}/`;

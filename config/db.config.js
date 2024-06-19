@@ -15,7 +15,7 @@ export const sequelize = new Sequelize(
   envData.config.db.username,
   envData.config.db.password,
   {
-    dialect: "mysql",
+    dialect: "postgres",
     host: envData.config.db.host,
     port: envData.config.db.port,
     logging: false

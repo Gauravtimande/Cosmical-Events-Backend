@@ -210,3 +210,4 @@ add the path of ssl in
 if you change the port no than change in .env file  PD_PORT=8000  as well as domain name PD_HOST="https://cosmical-events-backend.onrender.com"
 
 and change in react js env.production file REACT_APP_BASE_URL = "https://cosmical-events-backend.onrender.com"
+asasas
