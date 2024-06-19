@@ -1,10 +1,7 @@
 import express from "express";
-import { storage } from "../config/multer.config";
-import multer from "multer";
+
 const userControllers =  require( "../controllers/user.controller"); // Ensure these imports are correct
-const vendorControllers= require("../controllers/Appointment.controller")
-const feedbackControllers =require("../controllers/feedback.controller");
-const serviceControllers=require("../controllers/VendorServices.controller")
+
 const eventControllers=require("../controllers/EventCoordinator.controller")
 const {  meetingNotes ,registerEventCoordinator,feedbacks,registerUsers,registerVendors,vendorservices } = require("../middlewares/validate")
 
