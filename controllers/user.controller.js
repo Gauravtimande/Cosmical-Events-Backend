@@ -54,7 +54,7 @@ export const login = async (req, res) => {
           role: role, // Use the role determined above
         },
         JWT_KEY,
-        { expiresIn: "24h" }
+        { expiresIn: "6h" }
       );
 
       // Return success response with token and user details
