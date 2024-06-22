@@ -6,6 +6,7 @@ import { isDBConnected } from "./config/db.config";
 import loggerMiddleware from "./middlewares/loggerMiddleware";
 import { userRouter } from "./routes/User-router";
 import { VendorServiceRouter } from "./routes/VendorService-routers";
+import { adminRouter } from "./routes/Admin-routers"
 
 const app = express();
 console.log('process.env.NODE_ENV--->',process.env.NODE_ENV)
@@ -28,6 +29,7 @@ app.use(loggerMiddleware);
 // API routes
 app.use("/api/v1/User", userRouter);
 app.use("/api/v1/Vendor", VendorServiceRouter);
+app.use("/api/v1/adminRoutes",adminRouter)
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
