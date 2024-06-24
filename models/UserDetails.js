@@ -4,47 +4,45 @@ const { sequelize } = require("../config/db.config");
 
 
 
-const Users = sequelize.define("Users", {
+const UserDetails = sequelize.define("UserDetails", {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true
   },
-  firstName: {
+  userID: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    references: {
+      model: "Users",
+      key: "id"
+    }
+  },
+  City: {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  lastName: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  email: {
+  PinCode: {
     type: DataTypes.TEXT,
     allowNull: false,
     unique: true
   },
-  password: {
-    type: DataTypes.TEXT,
+  DOB: {
+    type: DataTypes.DATE,
     allowNull: false
   },
-  Otp: {
-    type: DataTypes.INTEGER,
-    allowNull: true
-  },
-  Verified: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
-  },
-  mobile_number: {
+  Gender: {
     type: DataTypes.STRING,
     allowNull: true
   },
-  role: {
-    type: DataTypes.ENUM,
-    values: ['USER', 'vendor', 'admin', 'co-ordinator'],
-    defaultValue: 'USER',
-    allowNull: false
+  Mobile: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  Email: {
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   deletedAt: {
     type: DataTypes.DATE,
@@ -58,11 +56,11 @@ const Users = sequelize.define("Users", {
     type: DataTypes.DATE,
     allowNull: false
   }
- 
+
 }, {
   timestamps: true
 });
 
 
-module.exports = Users;
+module.exports = UserDetails;
 

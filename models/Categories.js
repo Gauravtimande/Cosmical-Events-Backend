@@ -1,25 +1,20 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
-const EventCoordinators = sequelize.define("EventCoordinators", {
+
+
+
+const Categories  = sequelize.define("Categories ", {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true
   },
-  Educational_details_if_related_to_work : {
+  Name: {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  Rating: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  Experience : {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  Small_description: {
+  status: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
@@ -34,9 +29,12 @@ const EventCoordinators = sequelize.define("EventCoordinators", {
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: false
-  } 
+  }
+ 
 }, {
   timestamps: true
 });
 
-module.exports = EventCoordinators;
+
+module.exports = Categories ;
+

@@ -11,60 +11,38 @@ module.exports = {
      */
     await queryInterface.createTable("EventCoordinators", {
       id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.BIGINT,
+        autoIncrement: true,
+        primaryKey: true
       },
-      fullname: {
+      Educational_details_if_related_to_work : {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      email: {
+      Rating: {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      password: {
+      Experience : {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      status: {
+      Small_description: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
-      role: {
-        type: Sequelize.ENUM,
-        values: ["EVENT-COORDINATOR"],
-        defaultValue : "EVENT-COORDINATOR"
-      },
-      mobile_number: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      is_deleted: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
-      is_active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
-      },
-      active_step: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
-      },
-      token: {
-        type: Sequelize.TEXT
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true
       },
       createdAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("NOW()")
+        allowNull: false
       },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("NOW()")
-      }
+        allowNull: false
+      } 
     });
   },
 

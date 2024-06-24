@@ -12,58 +12,58 @@ module.exports = {
     await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.BIGINT
       },
-      fullname: {
+      firstName: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       email: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        unique: true,
       },
       password: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
-      status: {
+      Otp: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      Verified: {
         type: Sequelize.BOOLEAN,
-        defaultValue: true
-      },
-      role: {
-        type: Sequelize.ENUM,
-        values: [ "USER"],
-        defaultValue : "USER"
+        defaultValue: false,
+        allowNull: false,
       },
       mobile_number: {
         type: Sequelize.STRING,
-        unique: true,
+        allowNull: true,
+      },
+      role: {
+        type: Sequelize.ENUM,
+        values: ['USER', 'vendor', 'admin', 'co-ordinator'],
+        defaultValue: 'USER',
         allowNull: false,
       },
-      is_deleted: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
-      is_active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
-      },
-      active_step: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
-      },
-      token: {
-        type: Sequelize.TEXT
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       createdAt: {
+        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("NOW()")
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal("NOW()")
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
@@ -77,8 +77,8 @@ module.exports = {
      * 
      */
     // Drop the child tables first
-    await queryInterface.dropTable("VendorServices");
-    await queryInterface.dropTable("Feedbacks");
-    await queryInterface.dropTable("Users");
+    // await queryInterface.dropTable("VendorServices");
+    // await queryInterface.dropTable("Feedbacks");
+    // await queryInterface.dropTable("Users");
   }
 };
