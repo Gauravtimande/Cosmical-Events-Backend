@@ -7,6 +7,14 @@ const EventCoordinators = sequelize.define("EventCoordinators", {
     autoIncrement: true,
     primaryKey: true
   },
+  Coordinators_ID: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    references: {
+      model: "Users",
+      key: "id"
+    }
+  },
   Educational_details_if_related_to_work : {
     type: DataTypes.TEXT,
     allowNull: false

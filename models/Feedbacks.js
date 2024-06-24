@@ -5,38 +5,38 @@ const Feedbacks = sequelize.define("Feedbacks", {
     id: {
         allowNull: false,
         primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.BIGINT,
+        
 
     },
-    userID: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-            model: "Users",
-            key: "id"
-        }
-    },
-    vendorID: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-            model: "Vendors",
-            key: "id"
-        }
-    },
-    comment: {
+    From : {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    rating: {
+    To : {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    is_deleted: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+    Rating : {
+        type: DataTypes.TEXT,
+        allowNull: false
     },
+    Feedback: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false
+    }
 }, {
     timestamps: true
 });

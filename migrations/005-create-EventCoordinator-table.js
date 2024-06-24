@@ -15,6 +15,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
+      Coordinators_ID: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        }
+      },
       Educational_details_if_related_to_work : {
         type: Sequelize.TEXT,
         allowNull: false

@@ -2,15 +2,13 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
 
-
-
-const VendorServices = sequelize.define("VendorServices", {
+const EventServicesBooking = sequelize.define("EventServicesBooking", {
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true
     },
-    Vendor_ID: {
+    User_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
         references: {
@@ -18,8 +16,32 @@ const VendorServices = sequelize.define("VendorServices", {
             key: "id"
         }
     },
-    Price: {
+    Coordinator_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+            model: "Users",
+            key: "id"
+        }
+    },
+    Event_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+            model: "Users",
+            key: "id"
+        }
+    },
+    Start_date: {
         type: DataTypes.TEXT,
+        allowNull: true
+    },
+    End_date: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    Start_date: {
+        type: DataTypes.JSON,
         allowNull: true
     },
     deletedAt: {
@@ -35,10 +57,14 @@ const VendorServices = sequelize.define("VendorServices", {
         allowNull: false
     }
 
+
+
 }, {
     timestamps: true
 });
 
 
-module.exports = VendorServices;
 
+
+
+module.exports = EventServicesBooking;

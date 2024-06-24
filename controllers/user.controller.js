@@ -6,7 +6,7 @@ import response from "../const/response"
 import { HTTP_MESSAGES } from "../const/message"
 import VendorServices from "../models/VendorServices";
 import Feedback from "../models/Feedbacks";
-import Vendors from "../models/Vendors";
+
 import EventCoordinators from "../models/EventCoordinators";
 
 
@@ -21,10 +21,10 @@ export const login = async (req, res) => {
     let role = 'USER'; // Default role
 
     // If user not found in Users table, check in the Vendors table
-    if (!user) {
-      user = await Vendors.findOne({ where: { email } });
-      role = 'VENDOR';
-    }
+    // if (!user) {
+    //   user = await Vendors.findOne({ where: { email } });
+    //   role = 'VENDOR';
+    // }
 
     // If user not found in Vendors table, check in the Admins table
     // if (!user) {

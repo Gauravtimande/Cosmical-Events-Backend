@@ -10,7 +10,7 @@ const vendorDetails = sequelize.define("vendorDetails", {
         autoIncrement: true,
         primaryKey: true
     },
-    userID: {
+    Vendor_ID: {
         type: DataTypes.BIGINT,
         allowNull: false,
         references: {
