@@ -7,17 +7,17 @@
     "dialect": "postgres"
   },
   "local": {
-   "username": "postgres",
+    "username": "postgres",
     "database": "Cosmical-Events",
     "password": "gaurav123",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-   "username": "postgres",
-    "database": "Cosmical-Events",
-    "password": "gaurav123",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "uigsofb2atb5ed0y",
+    "database": "bgsswttwcdlqbp5euiut",
+    "password": "K5BErBurroS916vH6nC8",
+    "host": "bgsswttwcdlqbp5euiut-mysql.services.clever-cloud.com",
+    "dialect": "mysql"
   }
 }

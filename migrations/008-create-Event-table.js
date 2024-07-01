@@ -79,6 +79,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("VendorServices");
+    await queryInterface.dropTable("Event");
   }
 };

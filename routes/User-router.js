@@ -15,7 +15,7 @@ const {  meetingNotes ,registerEventCoordinator,feedbacks,registerUsers,register
 export const userRouter = express.Router();
 
 // Define routes with proper callback functions
-userRouter.get("/ShowAll-Vendor", userControllers.ShowAllVendor );
+userRouter.get("/ShowAll-users", userControllers.ShowAlluser );
 
 
 userRouter.post("/register-EventCoordinator",eventControllers.registerEventCoordinator); // check this Event cordinator 
@@ -24,10 +24,14 @@ userRouter.post("/register-EventCoordinator",eventControllers.registerEventCoord
 
 
 // sign up Api
+userRouter.post("/verifyOTP",userControllers.verifyOTPAndRegister);
 userRouter.post("/register-user",userControllers.registerUser);
 userRouter.post("/register-Vendor",userControllers.registerVendor);
+userRouter.post("/register-CO-ORDINATOR",userControllers.registerCO_ORDINATOR);
 
 
+userRouter.delete("/delete-user",userControllers.deleteUser);
+userRouter.get("/all-user",userControllers.getCounts);
 
 
 // sign in Api

@@ -1,16 +1,13 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 
-
-
-
-const Categories  = sequelize.define("Categories ", {
+const Categories = sequelize.define("Categories", { // Removed the space here
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true
   },
-  Name: {
+  CategorieName: {
     type: DataTypes.TEXT,
     allowNull: false
   },
@@ -30,11 +27,8 @@ const Categories  = sequelize.define("Categories ", {
     type: DataTypes.DATE,
     allowNull: false
   }
- 
 }, {
   timestamps: true
 });
 
-
-module.exports = Categories ;
-
+module.exports = Categories;

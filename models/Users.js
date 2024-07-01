@@ -33,8 +33,8 @@ const Users = sequelize.define("Users", {
   },
   Verified: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
+    allowNull: false,
+    defaultValue: false
   },
   mobile_number: {
     type: DataTypes.STRING,
@@ -42,8 +42,7 @@ const Users = sequelize.define("Users", {
   },
   role: {
     type: DataTypes.ENUM,
-    values: ['USER', 'vendor', 'admin', 'co-ordinator'],
-    defaultValue: 'USER',
+    values: ['user', 'vendor', 'admin', 'co-ordinator'],
     allowNull: false
   },
   deletedAt: {
@@ -52,15 +51,16 @@ const Users = sequelize.define("Users", {
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
   },
   updatedAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
   }
- 
 }, {
-  timestamps: true
+  timestamps: true 
 });
 
 
