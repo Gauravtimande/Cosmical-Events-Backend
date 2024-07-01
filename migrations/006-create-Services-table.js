@@ -42,11 +42,13 @@ module.exports = {
             allowNull: true
           },
           image: {
-            type: Sequelize.JSONB,
+            type: Sequelize.JSON,
+            defaultValue: [],
             allowNull: false
           },
           Video: {
-            type: Sequelize.JSONB,
+            type: Sequelize.JSON,
+            defaultValue: [],
             allowNull: false
           },
           Rating: {

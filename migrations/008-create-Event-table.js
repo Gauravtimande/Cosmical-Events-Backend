@@ -51,7 +51,8 @@ module.exports = {
         },
         Event_preferences_locations: {
             type: Sequelize.JSON,
-            allowNull: true
+            allowNull: true,
+            defaultValue: [],
         },
         Status: {
             type: Sequelize.ENUM,

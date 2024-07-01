@@ -50,6 +50,7 @@ const Event = sequelize.define("Event", {
     },
     Event_preferences_locations: {
         type: DataTypes.JSON,
+        defaultValue: [],
         allowNull: true
     },
     Status: {

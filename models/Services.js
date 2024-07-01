@@ -41,11 +41,13 @@ const Services = sequelize.define("Services", {
     allowNull: true
   },
   image: {
-    type: DataTypes.JSONB,
+    type: DataTypes.JSON,
+    defaultValue: [],
     allowNull: false
   },
   Video: {
-    type: DataTypes.JSONB,
+    type: DataTypes.JSON,
+    defaultValue: [],
     allowNull: false
   },
   Rating: {
