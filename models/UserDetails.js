@@ -25,7 +25,7 @@ const UserDetails = sequelize.define("UserDetails", {
   PinCode: {
     type: DataTypes.TEXT,
     allowNull: false,
-    unique: true
+   
   },
   DOB: {
     type: DataTypes.DATE,

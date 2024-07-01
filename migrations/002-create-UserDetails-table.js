@@ -30,7 +30,7 @@ module.exports = {
           PinCode: {
             type: Sequelize.TEXT,
             allowNull: false,
-            unique: true
+         
           },
           DOB: {
             type: Sequelize.DATE,
