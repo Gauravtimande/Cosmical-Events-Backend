@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
     // }
     // https.createServer(https_options, app).listen(443);
     // https.createServer(https_options, app).on("listening", () => { console.log(`Server running on ${process.env.NODE_ENV} mode on port 443`.yellow.bold) });
-    //  const http = require("http")
+     const http = require("http")
      const PORT = envData.config?.port
      http.createServer(app).listen(process.env.PD_PORT);
     server.on("listening", () => { console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`) });
@@ -33,3 +33,4 @@ if (process.env.NODE_ENV === "production") {
     http.createServer(app).listen(5000);
     server.on("listening", () => { console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`) });
 }
+

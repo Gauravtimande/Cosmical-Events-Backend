@@ -3,51 +3,46 @@ const { sequelize } = require("../config/db.config");
 
 const EventCoordinators = sequelize.define("EventCoordinators", {
   id: {
+    type: DataTypes.BIGINT,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  Coordinators_ID: {
+    type: DataTypes.BIGINT,
     allowNull: false,
-    primaryKey: true,
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    references: {
+      model: "Users",
+      key: "id"
+    }
   },
-  fullname: {
+  Educational_details_if_related_to_work : {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  email: {
+  Rating: {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  password: {
+  Experience : {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  status: {
+  Small_description: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
-  role: {
-    type: DataTypes.ENUM,
-    values: ["EVENT-COORDINATOR"],
-    defaultValue : "EVENT-COORDINATOR"
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
   },
-  is_deleted: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false
   },
-  is_active: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
-  },
-  active_step:{
-    type: DataTypes.INTEGER,
-    defaultValue: 0
-  },
-  mobile_number: {
-    type: DataTypes.STRING,
-    allowNull: false 
-  },
-  token: {
-    type: DataTypes.TEXT
-  }
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false
+  } 
 }, {
   timestamps: true
 });

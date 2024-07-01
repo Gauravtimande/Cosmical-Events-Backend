@@ -1,64 +1,68 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db.config");
-const VendorServices = require("./VendorServices");
 
-const Feedbacks = require("./Feedbacks");
 
 
 
 const Users = sequelize.define("Users", {
   id: {
-    allowNull: false,
-    primaryKey: true,
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+    type: DataTypes.BIGINT,
+    autoIncrement: true,
+    primaryKey: true
   },
-  fullname: {
+  firstName: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  lastName: {
     type: DataTypes.TEXT,
     allowNull: false
   },
   email: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   password: {
     type: DataTypes.TEXT,
     allowNull: false
   },
-  status: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
-  },
-  role: {
-    type: DataTypes.ENUM,
-    values: ["USER"],
-    defaultValue: "USER"
-  },
-  is_deleted: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
-  },
-  is_active: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
-  },
-  active_step: {
+  Otp: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    allowNull: true
+  },
+  Verified: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   },
   mobile_number: {
     type: DataTypes.STRING,
+    allowNull: true
+  },
+  role: {
+    type: DataTypes.ENUM,
+    values: ['user', 'vendor', 'admin', 'co-ordinator'],
     allowNull: false
   },
-  token: {
-    type: DataTypes.TEXT
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
   }
 }, {
-  timestamps: true
+  timestamps: true 
 });
-Users.hasMany(VendorServices, { foreignKey: 'vendor_id', as: 'vendorServices' });
 
-Users.hasMany(Feedbacks, { foreignKey: 'userID', as: 'feedbacks' });
 
 module.exports = Users;
 

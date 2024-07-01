@@ -1,17 +1,17 @@
 {
   "development": {
-    "username": "Gaurav",
+    "username": "postgres",
     "database": "Cosmical-Events",
-    "password": "Gaurav@123",
+    "password": "gaurav123",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "local": {
-    "username": "Gaurav",
+    "username": "postgres",
     "database": "Cosmical-Events",
-    "password": "Gaurav@123",
+    "password": "gaurav123",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "production": {
     "username": "uigsofb2atb5ed0y",
