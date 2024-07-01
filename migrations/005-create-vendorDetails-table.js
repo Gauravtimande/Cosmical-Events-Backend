@@ -26,7 +26,7 @@ module.exports = {
       OwnerEmail: {
         type: Sequelize.TEXT,
         allowNull: false,
-        unique: true
+       
       },
       OwnerMobile_number: {
         type: Sequelize.STRING,

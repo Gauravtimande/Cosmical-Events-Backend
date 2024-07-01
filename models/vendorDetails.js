@@ -25,7 +25,7 @@ const vendorDetails = sequelize.define("vendorDetails", {
     OwnerEmail: {
         type: DataTypes.TEXT,
         allowNull: false,
-        unique: true
+        
     },
     OwnerMobile_number: {
         type: DataTypes.STRING,
